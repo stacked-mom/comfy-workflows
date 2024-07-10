@@ -1,0 +1,997 @@
+{
+    "clean::Depth (Midas)": {
+        "author": "anon",
+        "category": "CNet",
+        "datetime": 1720520172490,
+        "external": [
+            [
+                1,
+                0,
+                "IMAGE"
+            ],
+            [
+                2,
+                0,
+                "CONDITIONING"
+            ],
+            [
+                2,
+                1,
+                "CONDITIONING"
+            ]
+        ],
+        "links": [
+            [
+                null,
+                0,
+                1,
+                0,
+                57,
+                "IMAGE"
+            ],
+            [
+                null,
+                0,
+                2,
+                0,
+                54,
+                "CONDITIONING"
+            ],
+            [
+                null,
+                1,
+                2,
+                1,
+                54,
+                "CONDITIONING"
+            ],
+            [
+                0,
+                0,
+                2,
+                2,
+                46,
+                "CONTROL_NET"
+            ],
+            [
+                1,
+                0,
+                2,
+                3,
+                47,
+                "IMAGE"
+            ]
+        ],
+        "nodes": [
+            {
+                "bgcolor": "#653",
+                "color": "#432",
+                "flags": {},
+                "index": 0,
+                "mode": 0,
+                "order": 6,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "CONTROL_NET",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "CONTROL_NET"
+                    }
+                ],
+                "pos": [
+                    -210,
+                    -660
+                ],
+                "properties": {
+                    "Node name for S&R": "ControlNetLoader"
+                },
+                "size": {
+                    "0": 410,
+                    "1": 60
+                },
+                "type": "ControlNetLoader",
+                "widgets_values": [
+                    "control-lora-depth-rank256.safetensors"
+                ]
+            },
+            {
+                "bgcolor": "#335",
+                "color": "#223",
+                "flags": {},
+                "index": 1,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "image",
+                        "type": "IMAGE"
+                    }
+                ],
+                "mode": 0,
+                "order": 12,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "IMAGE",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "IMAGE"
+                    }
+                ],
+                "pos": [
+                    250,
+                    -840
+                ],
+                "properties": {
+                    "Node name for S&R": "MiDaS-DepthMapPreprocessor"
+                },
+                "size": {
+                    "0": 315,
+                    "1": 106
+                },
+                "type": "MiDaS-DepthMapPreprocessor",
+                "widgets_values": [
+                    6.283185307179586,
+                    0.1,
+                    1024
+                ]
+            },
+            {
+                "bgcolor": "#335",
+                "color": "#223",
+                "flags": {},
+                "index": 2,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "positive",
+                        "type": "CONDITIONING"
+                    },
+                    {
+                        "link": null,
+                        "name": "negative",
+                        "type": "CONDITIONING"
+                    },
+                    {
+                        "link": null,
+                        "name": "control_net",
+                        "type": "CONTROL_NET"
+                    },
+                    {
+                        "link": null,
+                        "name": "image",
+                        "type": "IMAGE"
+                    }
+                ],
+                "mode": 0,
+                "order": 19,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "positive",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "CONDITIONING"
+                    },
+                    {
+                        "links": [],
+                        "name": "negative",
+                        "shape": 3,
+                        "slot_index": 1,
+                        "type": "CONDITIONING"
+                    }
+                ],
+                "pos": [
+                    250,
+                    -700
+                ],
+                "properties": {
+                    "Node name for S&R": "ControlNetApplyAdvanced"
+                },
+                "size": {
+                    "0": 315,
+                    "1": 166
+                },
+                "type": "ControlNetApplyAdvanced",
+                "widgets_values": [
+                    1,
+                    0,
+                    1
+                ]
+            }
+        ],
+        "packname": "clean",
+        "version": "0.0"
+    },
+    "clean::Inpaint": {
+        "author": "anon",
+        "category": "Inpaint",
+        "config": {
+            "0": {},
+            "1": {},
+            "2": {
+                "input": {
+                    "wildcard": {
+                        "visible": false
+                    }
+                }
+            },
+            "3": {
+                "input": {
+                    "text": {
+                        "name": "positive"
+                    }
+                }
+            },
+            "4": {
+                "input": {
+                    "text": {
+                        "name": "negative"
+                    }
+                }
+            }
+        },
+        "datetime": 1720587963626,
+        "external": [
+            [
+                {
+                    "bgcolor": "#535",
+                    "color": "#323",
+                    "flags": {},
+                    "index": 2,
+                    "inputs": [
+                        {
+                            "link": null,
+                            "name": "image",
+                            "type": "IMAGE"
+                        },
+                        {
+                            "link": null,
+                            "name": "segs",
+                            "type": "SEGS"
+                        },
+                        {
+                            "link": null,
+                            "name": "model",
+                            "type": "MODEL"
+                        },
+                        {
+                            "link": null,
+                            "name": "clip",
+                            "type": "CLIP"
+                        },
+                        {
+                            "link": null,
+                            "name": "vae",
+                            "type": "VAE"
+                        },
+                        {
+                            "link": null,
+                            "name": "positive",
+                            "type": "CONDITIONING"
+                        },
+                        {
+                            "link": null,
+                            "name": "negative",
+                            "type": "CONDITIONING"
+                        },
+                        {
+                            "link": null,
+                            "name": "detailer_hook",
+                            "type": "DETAILER_HOOK"
+                        },
+                        {
+                            "link": null,
+                            "name": "scheduler_func_opt",
+                            "type": "SCHEDULER_FUNC"
+                        }
+                    ],
+                    "mode": 0,
+                    "order": 14,
+                    "outputs": [
+                        {
+                            "links": [],
+                            "name": "image",
+                            "shape": 3,
+                            "slot_index": 0,
+                            "type": "IMAGE"
+                        },
+                        {
+                            "links": null,
+                            "name": "cropped",
+                            "shape": 6,
+                            "type": "IMAGE"
+                        },
+                        {
+                            "links": null,
+                            "name": "cropped_refined",
+                            "shape": 6,
+                            "type": "IMAGE"
+                        },
+                        {
+                            "links": null,
+                            "name": "cropped_refined_alpha",
+                            "shape": 6,
+                            "type": "IMAGE"
+                        },
+                        {
+                            "links": null,
+                            "name": "cnet_images",
+                            "shape": 6,
+                            "type": "IMAGE"
+                        }
+                    ],
+                    "pos": [
+                        1587,
+                        1500
+                    ],
+                    "properties": {
+                        "Node name for S&R": "DetailerForEachDebug"
+                    },
+                    "size": {
+                        "0": 337.6000061035156,
+                        "1": 620
+                    },
+                    "type": "DetailerForEachDebug",
+                    "widgets_values": [
+                        1024,
+                        true,
+                        1024,
+                        0,
+                        "fixed",
+                        20,
+                        6.5,
+                        "dpmpp_sde_gpu",
+                        "karras",
+                        0.85,
+                        10,
+                        true,
+                        true,
+                        "",
+                        1,
+                        false,
+                        20
+                    ]
+                },
+                0,
+                "IMAGE"
+            ]
+        ],
+        "links": [
+            [
+                null,
+                1,
+                1,
+                0,
+                19,
+                "MASK"
+            ],
+            [
+                null,
+                1,
+                0,
+                0,
+                42,
+                "CLIP"
+            ],
+            [
+                0,
+                0,
+                3,
+                0,
+                43,
+                "CLIP"
+            ],
+            [
+                0,
+                0,
+                4,
+                0,
+                43,
+                "CLIP"
+            ],
+            [
+                null,
+                0,
+                2,
+                0,
+                19,
+                "IMAGE"
+            ],
+            [
+                1,
+                0,
+                2,
+                1,
+                39,
+                "SEGS"
+            ],
+            [
+                null,
+                0,
+                2,
+                2,
+                42,
+                "MODEL"
+            ],
+            [
+                0,
+                0,
+                2,
+                3,
+                43,
+                "CLIP"
+            ],
+            [
+                null,
+                2,
+                2,
+                4,
+                2,
+                "VAE"
+            ],
+            [
+                3,
+                0,
+                2,
+                5,
+                40,
+                "CONDITIONING"
+            ],
+            [
+                4,
+                0,
+                2,
+                6,
+                41,
+                "CONDITIONING"
+            ]
+        ],
+        "nodes": [
+            {
+                "flags": {},
+                "index": 0,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "",
+                        "type": "*"
+                    }
+                ],
+                "mode": 0,
+                "order": 11,
+                "outputs": [
+                    {
+                        "links": null,
+                        "name": "",
+                        "type": "*"
+                    }
+                ],
+                "pos": [
+                    890,
+                    1880
+                ],
+                "properties": {
+                    "horizontal": false,
+                    "showOutputText": false
+                },
+                "size": [
+                    75,
+                    26
+                ],
+                "type": "Reroute"
+            },
+            {
+                "bgcolor": "#535",
+                "color": "#323",
+                "flags": {},
+                "index": 1,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "mask",
+                        "type": "MASK"
+                    }
+                ],
+                "mode": 0,
+                "order": 8,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "SEGS",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "SEGS"
+                    }
+                ],
+                "pos": [
+                    1227,
+                    1500
+                ],
+                "properties": {
+                    "Node name for S&R": "MaskToSEGS"
+                },
+                "size": {
+                    "0": 315,
+                    "1": 366
+                },
+                "type": "MaskToSEGS",
+                "widgets_values": [
+                    false,
+                    1.8,
+                    false,
+                    10,
+                    false
+                ]
+            },
+            {
+                "bgcolor": "#535",
+                "color": "#323",
+                "flags": {},
+                "index": 2,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "image",
+                        "type": "IMAGE"
+                    },
+                    {
+                        "link": null,
+                        "name": "segs",
+                        "type": "SEGS"
+                    },
+                    {
+                        "link": null,
+                        "name": "model",
+                        "type": "MODEL"
+                    },
+                    {
+                        "link": null,
+                        "name": "clip",
+                        "type": "CLIP"
+                    },
+                    {
+                        "link": null,
+                        "name": "vae",
+                        "type": "VAE"
+                    },
+                    {
+                        "link": null,
+                        "name": "positive",
+                        "type": "CONDITIONING"
+                    },
+                    {
+                        "link": null,
+                        "name": "negative",
+                        "type": "CONDITIONING"
+                    },
+                    {
+                        "link": null,
+                        "name": "detailer_hook",
+                        "type": "DETAILER_HOOK"
+                    },
+                    {
+                        "link": null,
+                        "name": "scheduler_func_opt",
+                        "type": "SCHEDULER_FUNC"
+                    }
+                ],
+                "mode": 0,
+                "order": 14,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "image",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "IMAGE"
+                    },
+                    {
+                        "links": null,
+                        "name": "cropped",
+                        "shape": 6,
+                        "type": "IMAGE"
+                    },
+                    {
+                        "links": null,
+                        "name": "cropped_refined",
+                        "shape": 6,
+                        "type": "IMAGE"
+                    },
+                    {
+                        "links": null,
+                        "name": "cropped_refined_alpha",
+                        "shape": 6,
+                        "type": "IMAGE"
+                    },
+                    {
+                        "links": null,
+                        "name": "cnet_images",
+                        "shape": 6,
+                        "type": "IMAGE"
+                    }
+                ],
+                "pos": [
+                    1587,
+                    1500
+                ],
+                "properties": {
+                    "Node name for S&R": "DetailerForEachDebug"
+                },
+                "size": {
+                    "0": 337.6000061035156,
+                    "1": 620
+                },
+                "type": "DetailerForEachDebug",
+                "widgets_values": [
+                    1024,
+                    true,
+                    1024,
+                    0,
+                    "fixed",
+                    20,
+                    6.5,
+                    "dpmpp_sde_gpu",
+                    "karras",
+                    0.85,
+                    10,
+                    true,
+                    true,
+                    "",
+                    1,
+                    false,
+                    20
+                ]
+            },
+            {
+                "bgcolor": "#353",
+                "color": "#232",
+                "flags": {},
+                "index": 3,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "clip",
+                        "type": "CLIP"
+                    }
+                ],
+                "mode": 0,
+                "order": 12,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "CONDITIONING",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "CONDITIONING"
+                    }
+                ],
+                "pos": [
+                    1151,
+                    1926
+                ],
+                "properties": {
+                    "Node name for S&R": "CLIPTextEncode"
+                },
+                "size": {
+                    "0": 400,
+                    "1": 200
+                },
+                "title": "Positive Prompt",
+                "type": "CLIPTextEncode",
+                "widgets_values": [
+                    "score_9, score_8_up, score_7_up, BREAK,\n\n"
+                ]
+            },
+            {
+                "bgcolor": "#533",
+                "color": "#322",
+                "flags": {},
+                "index": 4,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "clip",
+                        "type": "CLIP"
+                    }
+                ],
+                "mode": 0,
+                "order": 13,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "CONDITIONING",
+                        "shape": 3,
+                        "slot_index": 0,
+                        "type": "CONDITIONING"
+                    }
+                ],
+                "pos": [
+                    1151,
+                    2174
+                ],
+                "properties": {
+                    "Node name for S&R": "CLIPTextEncode"
+                },
+                "size": {
+                    "0": 400,
+                    "1": 200
+                },
+                "title": "Negative Prompt",
+                "type": "CLIPTextEncode",
+                "widgets_values": [
+                    "score_1, score_2, score_3, text, ugly, deformed, noisy, blurry, distorted, grainy, drawing, painting, crayon, sketch, graphite, impressionist, soft, anime, cartoon, graphic, abstract, glitch, mutated, disfigured, out of focus, dirt on lens, bokeh, 3d render, watermark,"
+                ]
+            }
+        ],
+        "packname": "clean",
+        "version": "0.0"
+    },
+    "clean::Prompts": {
+        "author": "anon",
+        "category": "Prompts",
+        "config": {
+            "0": {
+                "input": {
+                    "value": {
+                        "name": "omg please",
+                        "visible": true
+                    }
+                }
+            },
+            "3": {
+                "output": {
+                    "0": {
+                        "name": "positive"
+                    }
+                }
+            },
+            "4": {
+                "output": {
+                    "0": {
+                        "name": "negative"
+                    }
+                }
+            }
+        },
+        "datetime": 1720519510099,
+        "external": [],
+        "links": [
+            [
+                2,
+                0,
+                3,
+                0,
+                4,
+                "*"
+            ],
+            [
+                0,
+                0,
+                3,
+                1,
+                2,
+                "STRING"
+            ],
+            [
+                2,
+                0,
+                4,
+                0,
+                4,
+                "*"
+            ],
+            [
+                1,
+                0,
+                4,
+                1,
+                3,
+                "STRING"
+            ]
+        ],
+        "nodes": [
+            {
+                "bgcolor": "#353",
+                "color": "#232",
+                "flags": {},
+                "index": 0,
+                "mode": 0,
+                "order": 0,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "STRING",
+                        "slot_index": 0,
+                        "type": "STRING",
+                        "widget": {
+                            "name": "text"
+                        }
+                    }
+                ],
+                "pos": [
+                    834,
+                    810
+                ],
+                "properties": {
+                    "Run widget replace on values": false
+                },
+                "size": {
+                    "0": 340,
+                    "1": 160
+                },
+                "title": "Positive Prompt",
+                "type": "PrimitiveNode"
+            },
+            {
+                "bgcolor": "#533",
+                "color": "#322",
+                "flags": {},
+                "index": 1,
+                "mode": 0,
+                "order": 1,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "STRING",
+                        "slot_index": 0,
+                        "type": "STRING",
+                        "widget": {
+                            "name": "text"
+                        }
+                    }
+                ],
+                "pos": [
+                    830,
+                    1011
+                ],
+                "properties": {
+                    "Run widget replace on values": false
+                },
+                "size": {
+                    "0": 350,
+                    "1": 170
+                },
+                "title": "Negative Prompt",
+                "type": "PrimitiveNode"
+            },
+            {
+                "flags": {},
+                "index": 2,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "",
+                        "type": "*"
+                    }
+                ],
+                "mode": 0,
+                "order": 2,
+                "outputs": [
+                    {
+                        "links": null,
+                        "name": "",
+                        "type": "*"
+                    }
+                ],
+                "pos": [
+                    720,
+                    950
+                ],
+                "properties": {
+                    "horizontal": false,
+                    "showOutputText": false
+                },
+                "size": [
+                    75,
+                    26
+                ],
+                "type": "Reroute"
+            },
+            {
+                "bgcolor": "#353",
+                "color": "#232",
+                "flags": {
+                    "collapsed": false,
+                    "pinned": false
+                },
+                "index": 3,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "clip",
+                        "slot_index": 0,
+                        "type": "CLIP"
+                    },
+                    {
+                        "link": null,
+                        "name": "text",
+                        "type": "STRING",
+                        "widget": {
+                            "name": "text"
+                        }
+                    }
+                ],
+                "mode": 0,
+                "order": 3,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "CONDITIONING",
+                        "slot_index": 0,
+                        "type": "CONDITIONING"
+                    }
+                ],
+                "pos": [
+                    1200,
+                    900
+                ],
+                "properties": {
+                    "Node name for S&R": "CLIPTextEncode"
+                },
+                "size": {
+                    "0": 210,
+                    "1": 54
+                },
+                "title": "+",
+                "type": "CLIPTextEncode",
+                "widgets_values": [
+                    ""
+                ]
+            },
+            {
+                "bgcolor": "#533",
+                "color": "#322",
+                "flags": {
+                    "collapsed": false,
+                    "pinned": false
+                },
+                "index": 4,
+                "inputs": [
+                    {
+                        "link": null,
+                        "name": "clip",
+                        "slot_index": 0,
+                        "type": "CLIP"
+                    },
+                    {
+                        "link": null,
+                        "name": "text",
+                        "type": "STRING",
+                        "widget": {
+                            "name": "text"
+                        }
+                    }
+                ],
+                "mode": 0,
+                "order": 4,
+                "outputs": [
+                    {
+                        "links": [],
+                        "name": "CONDITIONING",
+                        "slot_index": 0,
+                        "type": "CONDITIONING"
+                    }
+                ],
+                "pos": [
+                    1201,
+                    1021
+                ],
+                "properties": {
+                    "Node name for S&R": "CLIPTextEncode"
+                },
+                "size": {
+                    "0": 210,
+                    "1": 54
+                },
+                "title": "-",
+                "type": "CLIPTextEncode",
+                "widgets_values": [
+                    ""
+                ]
+            }
+        ],
+        "packname": "clean",
+        "version": "0.0"
+    }
+}
